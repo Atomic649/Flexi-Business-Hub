@@ -7,7 +7,7 @@ class Account extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Account'),
+        child: Text('Accountancy'),
       ),
     );
   }
