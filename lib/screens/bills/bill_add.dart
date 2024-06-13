@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flexi_business_hub/models/bill_model.dart';
+import 'package:flexi_business_hub/screens/bills/components/bill_form.dart';
+import 'package:flexi_business_hub/screens/buttomnavpage/income_screen.dart';
+import 'package:flexi_business_hub/services/API/rest_api_bill.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/models/bill_model.dart';
-import 'package:flutter_node_store/screens/bills/components/bill_form.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/income_screen.dart';
-import 'package:flutter_node_store/services/rest_api.dart';
+
 //import 'package:intl/intl.dart';
 
 class BillAdd extends StatefulWidget {
@@ -20,21 +21,22 @@ class _BillAddState extends State<BillAdd> {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูล Bill
   final _bill = BillModel(
-    customerName: '',
-    customerPhone: '',
-    customerGender: 'หญิง',
-    promotion: '',
-    buyAmount: 1,
-    price: 0,
-    adress: '',
-    provence: '',
-    postId: '',
-    payment: 'COD',
-    logisticStatus: 'ยังไม่ส่ง',
-    cashInDate: '27/01/2024',
-    platform: 'Line',
-    salesId: '000000',
-    purchaseAt: '', 
+    cName: '',
+    cLastname: '',
+    cPhone: '',
+    cGender: '',
+    cAdress: '',
+    cProvince: '',
+    cPostId: '',
+    product: '',
+    payment: '',
+    amount: 0,
+    platform: '',
+    cashStatus: true,
+    price: 0,    
+    memberId: '',
+    
+    
     //purchaseAt: DateFormat('dd/MM/yyyy').format(DateTime.now()),
   );
 

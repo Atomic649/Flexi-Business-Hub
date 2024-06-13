@@ -1,5 +1,6 @@
+import 'package:flexi_business_hub/components/social_media_stack.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/social_media_stack.dart';
+
 
 class GoogleBox extends StatefulWidget {
   const GoogleBox({super.key});

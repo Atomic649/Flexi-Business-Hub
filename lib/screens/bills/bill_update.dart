@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:flexi_business_hub/components/image_not_found.dart';
+import 'package:flexi_business_hub/models/bill_model.dart';
+import 'package:flexi_business_hub/screens/bills/components/bill_form.dart';
+import 'package:flexi_business_hub/services/API/rest_api_bill.dart';
+import 'package:flexi_business_hub/utils/constants.dart';
+import 'package:flexi_business_hub/utils/utility.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/image_not_found.dart';
-import 'package:flutter_node_store/models/bill_model.dart';
-import 'package:flutter_node_store/screens/bills/components/bill_form.dart';
-import 'package:flutter_node_store/services/rest_api.dart';
-import 'package:flutter_node_store/utils/constants.dart';
-import 'package:flutter_node_store/utils/utility.dart';
 import '../buttomnavpage/income_screen.dart';
 
 class BillUpdate extends StatefulWidget {
@@ -24,24 +23,21 @@ class _BillUpdateState extends State<BillUpdate> {
 
   //สร้างตัวแปรสำหรับเก็บข้อมูล Bill
   final _bill = BillModel(
-    billId: 0,
-    customerName: '',
-    customerPhone: '0000000000',
-    customerGender: '',
-    promotion: 'Rezet 1 ซอง',
-    buyAmount: 1,
-    price: 395,
-    adress: '555/39',
-    provence: 'กรุงเทพมหานคร',
-    postId: '10510',
-    payment: 'COD',
-    logisticStatus: 'ยังไม่ส่ง',
-    cashInDate: '27/01/2024',
+  cName: '',
+    cLastname: '',
+    cPhone: '',
+    cGender: '',
+    cAdress: '',
+    cProvince: '',
+    cPostId: '',
+    product: '',
+    payment: '',
+    amount: 0,
     platform: '',
-    salesId: '000000',
-    purchaseAt: '',
+    cashStatus: true,
+    price: 0,    
+    memberId: '',
   );
-
   // ไฟล์รูปภาพ
   File? _imageFile;
 
@@ -53,22 +49,23 @@ class _BillUpdateState extends State<BillUpdate> {
     Utility().logger.d(arguments);
 
     // set ค่าเริ่มต้นให้กับ Model
-    _bill.billId = arguments['bills']['bill_id'];
-    _bill.customerName = arguments['bills']['customer_name'];
-    _bill.customerPhone = arguments['bills']['customer_phone'];
-    _bill.customerGender = arguments['bills']['customer_gender'];
-    _bill.promotion = arguments['bills']['promotion'];
-    _bill.buyAmount = arguments['bills']['buy_amount'];
-    _bill.price = arguments['bills']['price'];
-    _bill.adress = arguments['bills']['adress'];
-    _bill.provence = arguments['bills']['provence'];
-    _bill.postId = arguments['bills']['post_id'];
-    _bill.payment = arguments['bills']['payment'];
-    _bill.logisticStatus = arguments['bills']['logistic_status'];
-    _bill.cashInDate = arguments['bills']['cash_in_date'];
-    _bill.platform = arguments['bills']['platform'];
-    _bill.salesId = arguments['bills']['sales_id'];
-    _bill.purchaseAt = arguments['bills']['purchase_at'];
+    _bill.cName = arguments['bill']['cName'];
+    _bill.cLastname = arguments['bill']['cLastname'];
+    _bill.cPhone = arguments['bill']['cPhone'];
+    _bill.cGender = arguments['bill']['cGender'];
+    _bill.cAdress = arguments['bill']['cAdress'];
+    _bill.cProvince = arguments['bill']['cProvince'];
+    _bill.cPostId = arguments['bill']['cPostId'];
+    _bill.product = arguments['bill']['product'];
+    _bill.payment = arguments['bill']['payment'];
+    _bill.amount = arguments['bill']['amount'];
+    _bill.platform = arguments['bill']['platform'];
+    _bill.cashStatus = arguments['bill']['cashStatus'];
+    _bill.price = arguments['bill']['price'];
+    _bill.memberId = arguments['bill']['memberId'];
+   
+    
+   
 
     return Scaffold(
       appBar: AppBar(
@@ -110,9 +107,9 @@ class _BillUpdateState extends State<BillUpdate> {
           SizedBox(
             width: double.infinity,
             height: 600,
-            child: arguments['bills']['image_bill'] != null &&
-                    arguments['bills']['image_bill'].isNotEmpty
-                ? _image(arguments['bills']['image_bill'])
+            child: arguments['bill']['imageBill'] != null &&
+                    arguments['bill']['imageBill'].isNotEmpty
+                ? _image(arguments['bill']['imageBill'])
                 : const ImageNotFound(),
           ),
           BillForm(_bill,

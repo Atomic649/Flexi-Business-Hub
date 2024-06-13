@@ -1,8 +1,9 @@
 
+import 'package:flexi_business_hub/components/image_not_found.dart';
+import 'package:flexi_business_hub/models/product_model.dart';
+import 'package:flexi_business_hub/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/image_not_found.dart';
-import 'package:flutter_node_store/models/product_model.dart';
-import 'package:flutter_node_store/utils/constants.dart';
+
 
 class ProductItem extends StatelessWidget {
   const ProductItem({

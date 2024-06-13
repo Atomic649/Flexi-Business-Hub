@@ -1,6 +1,7 @@
 
+import 'package:flexi_business_hub/utils/utility.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/utils/utility.dart';
+
 
 class LocaleProvider extends ChangeNotifier {
   Locale _locale = const Locale('en');

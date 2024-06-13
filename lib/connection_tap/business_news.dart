@@ -1,6 +1,7 @@
+import 'package:flexi_business_hub/components/business_news_container.dart';
+import 'package:flexi_business_hub/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/business_news_container.dart';
-import 'package:flutter_node_store/providers/theme_provider.dart';
+
 import 'package:provider/provider.dart';
 
 class BusinessNews extends StatefulWidget {

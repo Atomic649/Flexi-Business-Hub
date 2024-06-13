@@ -1,10 +1,11 @@
+import 'package:flexi_business_hub/app_router.dart';
+import 'package:flexi_business_hub/providers/local_provider.dart';
+import 'package:flexi_business_hub/providers/theme_provider.dart';
+import 'package:flexi_business_hub/themes/styles.dart';
+import 'package:flexi_business_hub/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_node_store/app_router.dart';
-import 'package:flutter_node_store/providers/local_provider.dart';
-import 'package:flutter_node_store/providers/theme_provider.dart';
-import 'package:flutter_node_store/themes/styles.dart';
-import 'package:flutter_node_store/utils/utility.dart';
+
 import 'package:provider/provider.dart';
 
 //----------------------------------------------------------------------------//

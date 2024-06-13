@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter_node_store/models/product_model.dart';
-import 'package:flutter_node_store/services/dio_config.dart';
-import 'package:flutter_node_store/utils/utility.dart';
+import 'package:flexi_business_hub/models/product_model.dart';
+import 'package:flexi_business_hub/services/dio_config.dart';
+import 'package:flexi_business_hub/utils/utility.dart';
+
 import 'package:http_parser/http_parser.dart';
 import '../models/bill_model.dart';
 
@@ -147,21 +148,20 @@ class CallAPI {
 
   Future<String> addBillAPI(BillModel bill, {File? imageFile}) async {
     FormData data = FormData.fromMap({
-      'customer_name': bill.customerName,
-      'customer_phone': bill.customerPhone,
-      'customer_gender': bill.customerGender,
-      'promotion': bill.promotion,
-      'buy_amount': bill.buyAmount,
+      'cName': bill.cName,
+      'cphone': bill.cPhone,
+      'cgender': bill.cGender,
+      'product': bill.product,
+      'amount': bill.amount,
       'price': bill.price,
-      'adress': bill.adress,
-      'provence': bill.provence,
-      'post_id': bill.postId,
-      'payment': bill.payment,
-      'logistic_status': bill.logisticStatus,
-      'cash_in_date': bill.cashInDate,
+      'cAdress': bill.cAdress,
+      'cProvence': bill.cProvince,
+      'cPostId': bill.cPostId,
+      'payment': bill.payment,     
+      'cashStatus': bill.cashStatus,
       'platform': bill.platform,
-      'sales_id': bill.salesId,
-      'purchase_at': bill.purchaseAt,
+      'memberId': bill.memberId,
+      'updatedAt': bill.updatedAt,
       if (imageFile != null)
         'photo': await MultipartFile.fromFile(
           imageFile.path,
@@ -190,21 +190,21 @@ class CallAPI {
   //---------------------Update Product API Method --------------------------//
   Future<String> updateBillAPI(BillModel bill, {File? imageFile}) async {
     FormData data = FormData.fromMap({
-      'customer_name': bill.customerName,
-      'customer_phone': bill.customerPhone,
-      'customer_gender': bill.customerGender,
-      'promotion': bill.promotion,
-      'buy_amount': bill.buyAmount,
+      'cName': bill.cName,
+      'cphone': bill.cPhone,
+      'cgender': bill.cGender,
+      'product': bill.product,
+      'amount': bill.amount,
       'price': bill.price,
-      'adress': bill.adress,
-      'provence': bill.provence,
-      'post_id': bill.postId,
-      'payment': bill.payment,
-      'logistic_status': bill.logisticStatus,
-      'cash_in_date': bill.cashInDate,
+      'cAdress': bill.cAdress,
+      'cProvence': bill.cProvince,
+      'cPostId': bill.cPostId,
+      'payment': bill.payment,     
+      'cashStatus': bill.cashStatus,
       'platform': bill.platform,
-      'sales_id': bill.salesId,
-      'purchase_at': bill.purchaseAt,
+      'memberId': bill.memberId,
+      'updatedAt': bill.updatedAt,
+
       if (imageFile != null)
         'photo': await MultipartFile.fromFile(
           imageFile.path,
@@ -213,7 +213,7 @@ class CallAPI {
     });
 
     final response = 
-    await _dioWithAuth.put('bills/${bill.billId}', data: data);
+    await _dioWithAuth.put('bills/${bill.id}', data: data);
     if (response.statusCode == 200) {
       //Utility().logger.d(response.data);
       return jsonEncode(response.data);

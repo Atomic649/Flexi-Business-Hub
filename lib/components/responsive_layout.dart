@@ -1,6 +1,7 @@
+import 'package:flexi_business_hub/providers/theme_provider.dart';
+import 'package:flexi_business_hub/themes/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/providers/theme_provider.dart';
-import 'package:flutter_node_store/themes/colors.dart';
+
 import 'package:provider/provider.dart';
 
 class ResponsiveLayout extends StatelessWidget {

@@ -1,8 +1,9 @@
+import 'package:flexi_business_hub/app_router.dart';
+import 'package:flexi_business_hub/models/bill_model.dart';
+import 'package:flexi_business_hub/screens/bills/components/bill_items.dart';
+import 'package:flexi_business_hub/services/API/rest_api_bill.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/app_router.dart';
-import 'package:flutter_node_store/models/bill_model.dart';
-import 'package:flutter_node_store/screens/bills/components/bill_items.dart';
-import 'package:flutter_node_store/services/rest_api.dart';
+
 
 //--------------สร้างตัวแปร refreshKey สำหรับการ RefreshIndicator-----------------//
 var refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -47,7 +48,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                             direction: DismissDirection.endToStart,
                             onDismissed: (direction) {
                               setState(() {
-                                CallAPI().deleteBillAPI(bills[index].billId!);
+                                CallAPI().deleteBillAPI(bills[index].id!);
                                 bills.removeAt(index);
                                 refreshKey.currentState!.show();
                               });

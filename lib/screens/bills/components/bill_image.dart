@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'package:flexi_business_hub/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/utils/constants.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 

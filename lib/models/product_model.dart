@@ -53,6 +53,8 @@ class ProductModel {
             : DateTime.parse(json["updated_at"]),
       );
 
+  get memberId => null;
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,

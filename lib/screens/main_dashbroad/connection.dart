@@ -1,10 +1,10 @@
+import 'package:flexi_business_hub/connection_tap/business_gemini.dart';
+import 'package:flexi_business_hub/connection_tap/business_message.dart';
+import 'package:flexi_business_hub/connection_tap/business_news.dart';
+import 'package:flexi_business_hub/connection_tap/business_profile.dart';
+import 'package:flexi_business_hub/connection_tap/business_shop.dart';
+import 'package:flexi_business_hub/themes/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/connection_tap/business_message.dart';
-import 'package:flutter_node_store/connection_tap/business_gemini.dart';
-import 'package:flutter_node_store/connection_tap/business_news.dart';
-import 'package:flutter_node_store/connection_tap/business_profile.dart';
-import 'package:flutter_node_store/connection_tap/business_shop.dart';
-import 'package:flutter_node_store/themes/colors.dart';
 
 class Connection extends StatefulWidget {
   @override

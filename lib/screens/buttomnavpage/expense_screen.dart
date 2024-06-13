@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/expense/ads_cost.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/expense/others_cost.dart';
-
+import 'package:flexi_business_hub/screens/buttomnavpage/expense/ads_cost.dart';
+import 'package:flexi_business_hub/screens/buttomnavpage/expense/others_cost.dart';
 class ExpenseScreen extends StatelessWidget {
   const ExpenseScreen({super.key});
 

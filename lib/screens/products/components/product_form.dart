@@ -1,9 +1,10 @@
 import 'dart:io';
 
+import 'package:flexi_business_hub/components/custom_textfield.dart';
+import 'package:flexi_business_hub/models/product_model.dart';
+import 'package:flexi_business_hub/screens/products/components/product_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/custom_textfield.dart';
-import 'package:flutter_node_store/models/product_model.dart';
-import 'package:flutter_node_store/screens/products/components/product_image.dart';
+
 
 class ProductForm extends StatefulWidget {
   final ProductModel product;

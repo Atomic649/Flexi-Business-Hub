@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_node_store/utils/constants.dart';
-import 'package:flutter_node_store/utils/utility.dart';
+import 'package:flexi_business_hub/utils/constants.dart';
+import 'package:flexi_business_hub/utils/utility.dart';
+
 
 
 class DioConfig {

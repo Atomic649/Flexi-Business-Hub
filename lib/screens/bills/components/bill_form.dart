@@ -1,11 +1,12 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:io';
+import 'package:flexi_business_hub/components/custom_textfield.dart';
+import 'package:flexi_business_hub/models/bill_model.dart';
+import 'package:flexi_business_hub/screens/bills/components/bill_image.dart';
+import 'package:flexi_business_hub/utils/utility.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/custom_textfield.dart';
-import 'package:flutter_node_store/models/bill_model.dart';
-import 'package:flutter_node_store/screens/bills/components/bill_image.dart';
-import 'package:flutter_node_store/utils/utility.dart';
+
 // ignore: unused_import
 import 'package:intl/intl.dart';
 
@@ -43,7 +44,7 @@ class _BillFormState extends State<BillForm> {
             //วันที่สั่งซื้อ
             TextFormField(
               readOnly: true,
-              controller: widget.bill.purchaseAt!=null?_dateController:_dateController,
+              controller: widget.bill.createAt!=null?_dateController:_dateController,
               maxLines: 1,
               obscureText: false,
               style: const TextStyle(color: Colors.black),
@@ -100,7 +101,7 @@ class _BillFormState extends State<BillForm> {
 
                 Utility().logger.d(_dateController.text);
               },
-              onSaved: (value) => widget.bill.purchaseAt = value!,
+              onSaved: (value) => widget.bill.createAt = DateTime.parse(value!),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'กรุณาเลือกวันที่สั่งซื้อสินค้า';
@@ -112,7 +113,7 @@ class _BillFormState extends State<BillForm> {
             const SizedBox(height: 10),
             //ชื่อลูกค้า
             customTextFieldBill(
-              initialValue: widget.bill.customerName.toString(),
+              initialValue: widget.bill.cName.toString(),
               obscureText: false,
               hintText: 'ชื่อลูกค้า',
               prefixIcon: const Icon(Icons.person),
@@ -122,7 +123,7 @@ class _BillFormState extends State<BillForm> {
                 }
                 return null;
               },
-              onSaved: (value) => widget.bill.customerName = value!,
+              onSaved: (value) => widget.bill.cName = value!,
             ),
             const SizedBox(height: 10),
 
@@ -131,7 +132,7 @@ class _BillFormState extends State<BillForm> {
               children: [
                 Expanded(
                   child: customTextFieldBill(
-                    initialValue: widget.bill.customerPhone.toString(),
+                    initialValue: widget.bill.cPhone.toString(),
                     obscureText: false,
                     hintText: 'เบอร์ลูกค้า',
                     textInputType: TextInputType.phone,
@@ -142,13 +143,13 @@ class _BillFormState extends State<BillForm> {
                       }
                       return null;
                     },
-                    onSaved: (value) => widget.bill.customerPhone = value!,
+                    onSaved: (value) => widget.bill.cPhone = value!,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: customDropDownFieldBill(
-                      initialValue: widget.bill.customerGender.toString(),
+                      initialValue: widget.bill.cGender.toString(),
                       obscureText: false,
                       textInputType: TextInputType.text,
                       validator: (value) {
@@ -159,7 +160,7 @@ class _BillFormState extends State<BillForm> {
                       },
                       hintText: 'gender',
                       prefixIcon: const Icon(Icons.co_present),
-                      onSaved: (value) => widget.bill.customerGender = value!,
+                      onSaved: (value) => widget.bill.cGender = value!,
                       items: const [
                         DropdownMenuItem(
                           value: 'ชาย',
@@ -178,7 +179,7 @@ class _BillFormState extends State<BillForm> {
 
             //โปรโมชั่น
             customTextFieldBill(
-              initialValue: widget.bill.promotion.toString(),
+              initialValue: widget.bill.product.toString(),
               obscureText: false,
               hintText: 'โปรโมชั่น',
               prefixIcon: const Icon(Icons.star),
@@ -188,7 +189,7 @@ class _BillFormState extends State<BillForm> {
                 }
                 return null;
               },
-              onSaved: (value) => widget.bill.promotion = value!,
+              onSaved: (value) => widget.bill.product = value!,
             ),
             const SizedBox(height: 10),
 
@@ -197,7 +198,7 @@ class _BillFormState extends State<BillForm> {
               children: [
                 Expanded(
                   child: customTextFieldProduct(
-                    initialValue: widget.bill.buyAmount.toString(),
+                    initialValue: widget.bill.amount.toString(),
                     obscureText: false,
                     hintText: 'จำนวนสินค้า',
                     textInputType: TextInputType.number,
@@ -209,7 +210,7 @@ class _BillFormState extends State<BillForm> {
                       return null;
                     },
                     onSaved: (value) =>
-                        widget..bill.buyAmount = int.parse(value!),
+                        widget..bill.amount = int.parse(value!),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -236,7 +237,7 @@ class _BillFormState extends State<BillForm> {
             const SizedBox(height: 10),
             //ที่อยู่
             customTextFieldBill(
-              initialValue: widget.bill.adress.toString(),
+              initialValue: widget.bill.cAdress.toString(),
               obscureText: false,
               hintText: 'ที่อยู่ลูกค้า',
               prefixIcon: const Icon(Icons.home),
@@ -248,7 +249,7 @@ class _BillFormState extends State<BillForm> {
                 }
                 return null;
               },
-              onSaved: (value) => widget.bill.adress = value!,
+              onSaved: (value) => widget.bill.cAdress = value!,
             ),
             const SizedBox(height: 10),
 
@@ -257,7 +258,7 @@ class _BillFormState extends State<BillForm> {
               children: [
                 Expanded(
                   child: customTextFieldBill(
-                    initialValue: widget.bill.provence.toString(),
+                    initialValue: widget.bill.cProvince.toString(),
                     obscureText: false,
                     hintText: 'จังหวัด',
                     prefixIcon: const Icon(Icons.home),
@@ -267,7 +268,7 @@ class _BillFormState extends State<BillForm> {
                       }
                       return null;
                     },
-                    onSaved: (value) => widget.bill.provence = value!,
+                    onSaved: (value) => widget.bill.cProvince = value!,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -275,7 +276,7 @@ class _BillFormState extends State<BillForm> {
                 //รหัสไปรษณีย์
                 Expanded(
                   child: customTextFieldBill(
-                    initialValue: widget.bill.postId.toString(),
+                    initialValue: widget.bill.cPostId.toString(),
                     obscureText: false,
                     hintText: 'รหัสไปรษณีย์',
                     textInputType: TextInputType.number,
@@ -286,7 +287,7 @@ class _BillFormState extends State<BillForm> {
                       }
                       return null;
                     },
-                    onSaved: (value) => widget..bill.postId = value!,
+                    onSaved: (value) => widget..bill.cPostId = value!,
                   ),
                 ),
               ],
@@ -372,7 +373,7 @@ class _BillFormState extends State<BillForm> {
 
             // Cash In Date
             customTextFieldBill(
-              initialValue: widget.bill.cashInDate.toString(),
+              initialValue: widget.bill.cashStatus.toString(),
               obscureText: false,
               enabled: false,
               hintText: 'DD/MM/YYYY ที่ได้รับเงินสด',
@@ -383,13 +384,13 @@ class _BillFormState extends State<BillForm> {
                 }
                 return null;
               },
-              onSaved: (value) => widget.bill.cashInDate = value!,
+              onSaved: (value) => widget.bill.cashStatus = bool.parse(value!),
             ),
             const SizedBox(height: 10),
 
             //ช่องทางการขาย
             customTextFieldBill(
-              initialValue: widget.bill.logisticStatus.toString(),
+              initialValue: widget.bill.platform.toString(),
               obscureText: false,
               hintText: 'ส่งแล้ว / กําลังส่ง / ยังไม่ส่ง',
               enabled: false,
@@ -400,27 +401,12 @@ class _BillFormState extends State<BillForm> {
                 }
                 return null;
               },
-              onSaved: (value) => widget.bill.logisticStatus = value!,
+              onSaved: (value) => widget.bill.platform = value!,
             ),
 
             const SizedBox(height: 10),
 
-            //Sale Id
-            customTextFieldBill(
-              initialValue: widget.bill.salesId.toString(),
-              obscureText: false,
-              enabled: false,
-              hintText: 'Sale Id',
-              prefixIcon: const Icon(Icons.app_registration),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'กรุณากรอกเลข Sale Id';
-                }
-                return null;
-              },
-              onSaved: (value) => widget.bill.salesId = value!,
-            ),
-            const SizedBox(height: 10),
+            
 
             BillImage(
               widget.callBackSetImage,

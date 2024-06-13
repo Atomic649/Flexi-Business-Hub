@@ -1,8 +1,8 @@
 
+import 'package:flexi_business_hub/components/mobile_layout.dart';
+import 'package:flexi_business_hub/components/responsive_layout.dart';
+import 'package:flexi_business_hub/screens/register/register_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/mobile_layout.dart';
-import 'package:flutter_node_store/components/responsive_layout.dart';
-import 'package:flutter_node_store/screens/register/register_form.dart';
 
 import '../../components/web_layout.dart';
 

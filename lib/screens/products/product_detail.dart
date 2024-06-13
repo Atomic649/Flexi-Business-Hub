@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:flexi_business_hub/app_router.dart';
+import 'package:flexi_business_hub/components/image_not_found.dart';
+import 'package:flexi_business_hub/screens/buttomnavpage/income_screen.dart';
+import 'package:flexi_business_hub/services/API/rest_api_product.dart';
+import 'package:flexi_business_hub/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/app_router.dart';
-import 'package:flutter_node_store/components/image_not_found.dart';
-import 'package:flutter_node_store/screens/drawerpage/product_screen.dart';
-import 'package:flutter_node_store/services/rest_api.dart';
-import 'package:flutter_node_store/utils/constants.dart';
 
 class ProductDetail extends StatefulWidget {
   const ProductDetail({super.key});

@@ -1,0 +1,187 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+enum UserRole {
+  owner
+  marketing
+  acccountance
+  sales
+}
+
+enum taxType {
+  Juristic
+  Individual
+}
+
+enum Gender{
+  Female
+  Male
+}
+
+enum Payment{
+  COD
+  Transfer
+  CaditCard
+}
+
+enum SocialMedia{
+  Facebook
+  Line
+  Tiktok
+  Shopee
+  Lazada
+}
+
+model User {
+  id        Int           @id @default(autoincrement())
+  email     String        @unique
+  password  String
+  firstName String
+  lastName  String
+  avatar    String?
+  createAt  DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  phone     String        @unique
+  business  BusinessAcc[]
+  member    Member[]
+}
+
+model Member {
+  uniqueId   String        @id @default(uuid())
+  role       UserRole      @default(owner)
+  permission String
+  createAt   DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  // Relation
+  userId     Int
+  user User @relation(fields: [userId],references: [id])
+  business   BusinessAcc[]
+  bill       Bill[]
+  adsCost    AdsCost[]
+  expence    Expence[]
+  product    Product[]
+
+}
+
+model BusinessAcc {
+  id            Int       @id @default(autoincrement())
+  businessName  String    @unique
+  vatId         String    @unique
+  businessType  String    
+  taxType       taxType   @default(Individual)
+  userId        Int       
+  memberId      String    @default(uuid())
+  user          User      @relation(fields: [userId], references: [id])
+  bills         Member    @relation(fields: [memberId], references: [uniqueId])
+  billRecord    Bill[]
+  expenceRecord Expence[]
+  adsCostRecord AdsCost[]
+}
+
+model Bill {
+  id         Int      @id @default(autoincrement())
+  createAt   DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  cName      String
+  cLastname  String
+  cPhone     String
+  cGender   Gender 
+  cAdress    String
+  cProvince  String
+  cPostId    String
+  product    String 
+  payment    Payment
+  amount     Int
+  purcheseAt DateTime @default(now())
+  platform   SocialMedia
+  cashStatus Boolean  @default(false)
+  price      Int
+  imageBill  String?  
+
+  // Relation 
+  productList Product @relation(fields: [product],references: [name])
+  memberId    String
+  member      Member      @relation(fields: [memberId], references: [uniqueId])
+  businessAcc Int 
+  businessId  BusinessAcc @relation(fields: [businessAcc], references: [id])
+}
+
+model AdsCost {
+  id        Int      @id @default(autoincrement())
+  date      DateTime @default(now())
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  adsCost   Int
+
+  // Relation
+  memberId    String
+  platformId  Int
+  member      Member      @relation(fields: [memberId], references: [uniqueId])
+  platform    Platform    @relation(fields: [platformId], references: [id])
+  businessAcc Int
+  businessId  BusinessAcc @relation(fields: [businessAcc], references: [id])
+}
+
+model Expence {
+  date      DateTime
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  group     String
+  image     String
+
+  // Relation
+  businessAcc Int
+  businessId  BusinessAcc @relation(fields: [businessAcc], references: [id])
+  memberId    String
+  member      Member      @relation(fields: [memberId], references: [uniqueId])
+}
+
+model Platform {
+  id         Int       @id @default(autoincrement())
+  platform   String    @unique
+  accName    String    @unique
+  accId      String    @unique
+  createAt   DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  platformId AdsCost[]
+}
+
+model Product {
+  id          Int      @id@default(autoincrement())
+  name        String   @unique
+  description String?  
+  barcode     String   
+  image       String?  
+  stock       Int
+  price       Int
+  categoryId Int?      
+  memberId     String      
+  statusId   Int?      
+  createdId  DateTime @default(now())
+  updatedId  DateTime @updatedAt
+  
+  // relation
+  biilRecord Bill[]
+  member      Member      @relation(fields: [memberId], references: [uniqueId])
+  
+}
+

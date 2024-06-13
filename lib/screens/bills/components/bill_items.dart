@@ -1,9 +1,10 @@
 //import 'package:flexi_busines_platform/components/image_not_found.dart';
 
+import 'package:flexi_business_hub/components/image_not_found.dart';
+import 'package:flexi_business_hub/models/bill_model.dart';
+import 'package:flexi_business_hub/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/components/image_not_found.dart';
-import 'package:flutter_node_store/models/bill_model.dart';
-import 'package:flutter_node_store/utils/constants.dart';
+
 
 class BillItem extends StatelessWidget {
   const BillItem({
@@ -135,7 +136,7 @@ class BillItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('${bill.purchaseAt}',
+                Text('${bill.updatedAt}',
                     style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -151,12 +152,12 @@ class BillItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' ${bill.customerName}',
+                Text(' ${bill.cName}',
                     style: const TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF303F9F))),
-                Text('${bill.promotion} ${bill.price}',
+                Text('${bill.product} ${bill.price}',
                     style: const TextStyle(
                         fontSize: 16.0, color: Color(0xFF898787))),
               ],

@@ -1,0 +1,183 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id Int [pk, increment]
+  email String [unique, not null]
+  password String [not null]
+  firstName String [not null]
+  lastName String [not null]
+  avatar String
+  createAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  phone String [unique, not null]
+  business BusinessAcc [not null]
+  member Member [not null]
+}
+
+Table Member {
+  uniqueId String [pk]
+  role UserRole [not null, default: 'owner']
+  permission String [not null]
+  createAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  userId Int [not null]
+  user User [not null]
+  business BusinessAcc [not null]
+  bill Bill [not null]
+  adsCost AdsCost [not null]
+  expence Expence [not null]
+  product Product [not null]
+}
+
+Table BusinessAcc {
+  id Int [pk, increment]
+  businessName String [unique, not null]
+  vatId String [unique, not null]
+  businessType String [not null]
+  taxType taxType [not null, default: 'Individual']
+  userId Int [not null]
+  memberId String [not null]
+  user User [not null]
+  bills Member [not null]
+  billRecord Bill [not null]
+  expenceRecord Expence [not null]
+  adsCostRecord AdsCost [not null]
+}
+
+Table Bill {
+  id Int [pk, increment]
+  createAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  cName String [not null]
+  cLastname String [not null]
+  cPhone String [not null]
+  cGender Gender [not null]
+  cAdress String [not null]
+  cProvince String [not null]
+  cPostId String [not null]
+  product String [not null]
+  payment Payment [not null]
+  amount Int [not null]
+  purcheseAt DateTime [default: `now()`, not null]
+  platform SocialMedia [not null]
+  cashStatus Boolean [not null, default: false]
+  price Int [not null]
+  imageBill String
+  productList Product [not null]
+  memberId String [not null]
+  member Member [not null]
+  businessAcc Int [not null]
+  businessId BusinessAcc [not null]
+}
+
+Table AdsCost {
+  id Int [pk, increment]
+  date DateTime [default: `now()`, not null]
+  createAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  adsCost Int [not null]
+  memberId String [not null]
+  platformId Int [not null]
+  member Member [not null]
+  platform Platform [not null]
+  businessAcc Int [not null]
+  businessId BusinessAcc [not null]
+}
+
+Table Expence {
+  date DateTime [not null]
+  createAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  id Int [pk, increment]
+  amount Int [not null]
+  group String [not null]
+  image String [not null]
+  businessAcc Int [not null]
+  businessId BusinessAcc [not null]
+  memberId String [not null]
+  member Member [not null]
+}
+
+Table Platform {
+  id Int [pk, increment]
+  platform String [unique, not null]
+  accName String [unique, not null]
+  accId String [unique, not null]
+  createAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  platformId AdsCost [not null]
+}
+
+Table Product {
+  id Int [pk, increment]
+  name String [unique, not null]
+  description String
+  barcode String [not null]
+  image String
+  stock Int [not null]
+  price Int [not null]
+  categoryId Int
+  memberId String [not null]
+  statusId Int
+  createdId DateTime [default: `now()`, not null]
+  updatedId DateTime [not null]
+  biilRecord Bill [not null]
+  member Member [not null]
+}
+
+Enum UserRole {
+  owner
+  marketing
+  acccountance
+  sales
+}
+
+Enum taxType {
+  Juristic
+  Individual
+}
+
+Enum Gender {
+  Female
+  Male
+}
+
+Enum Payment {
+  COD
+  Transfer
+  CaditCard
+}
+
+Enum SocialMedia {
+  Facebook
+  Line
+  Tiktok
+  Shopee
+  Lazada
+}
+
+Ref: Member.userId > User.id
+
+Ref: BusinessAcc.userId > User.id
+
+Ref: BusinessAcc.memberId > Member.uniqueId
+
+Ref: Bill.product > Product.name
+
+Ref: Bill.memberId > Member.uniqueId
+
+Ref: Bill.businessAcc > BusinessAcc.id
+
+Ref: AdsCost.memberId > Member.uniqueId
+
+Ref: AdsCost.platformId > Platform.id
+
+Ref: AdsCost.businessAcc > BusinessAcc.id
+
+Ref: Expence.businessAcc > BusinessAcc.id
+
+Ref: Expence.memberId > Member.uniqueId
+
+Ref: Product.memberId > Member.uniqueId

@@ -1,8 +1,8 @@
+import 'package:flexi_business_hub/screens/buttomnavpage/statistic/cash_report.dart';
+import 'package:flexi_business_hub/screens/buttomnavpage/statistic/daily_report.dart';
+import 'package:flexi_business_hub/screens/buttomnavpage/statistic/monthly_report.dart';
+import 'package:flexi_business_hub/screens/buttomnavpage/statistic/tax_report.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/statistic/cash_report.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/statistic/daily_report.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/statistic/monthly_report.dart';
-import 'package:flutter_node_store/screens/buttomnavpage/statistic/tax_report.dart';
 
 class StatisticScreen extends StatelessWidget {
   const StatisticScreen({super.key});

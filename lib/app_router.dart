@@ -1,17 +1,20 @@
-import 'package:flutter_node_store/screens/bills/bill_add.dart';
-import 'package:flutter_node_store/screens/bills/bill_update.dart';
-import 'package:flutter_node_store/screens/dashbroad/dashbroad_screen.dart';
-import 'package:flutter_node_store/screens/drawerpage/about_screen.dart';
-import 'package:flutter_node_store/screens/drawerpage/contact_screen.dart';
-import 'package:flutter_node_store/screens/drawerpage/info_screen.dart';
-import 'package:flutter_node_store/screens/drawerpage/product_screen.dart';
-import 'package:flutter_node_store/screens/forgotpassword/forgot_password_screen.dart';
-import 'package:flutter_node_store/screens/login/login_screen.dart';
-import 'package:flutter_node_store/screens/products/product_add.dart';
-import 'package:flutter_node_store/screens/products/product_detail.dart';
-import 'package:flutter_node_store/screens/products/product_update.dart';
-import 'package:flutter_node_store/screens/register/register_screen.dart';
-import 'package:flutter_node_store/screens/welcome/welcome_screen.dart';
+
+
+import 'package:flexi_business_hub/screens/bills/bill_add.dart';
+import 'package:flexi_business_hub/screens/bills/bill_update.dart';
+import 'package:flexi_business_hub/screens/dashbroad/dashbroad_screen.dart';
+import 'package:flexi_business_hub/screens/drawerpage/about_screen.dart';
+import 'package:flexi_business_hub/screens/drawerpage/contact_screen.dart';
+import 'package:flexi_business_hub/screens/drawerpage/info_screen.dart';
+import 'package:flexi_business_hub/screens/drawerpage/product_screen.dart';
+import 'package:flexi_business_hub/screens/forgotpassword/forgot_password_screen.dart';
+import 'package:flexi_business_hub/screens/login/login_screen.dart';
+import 'package:flexi_business_hub/screens/member/member_screen.dart';
+import 'package:flexi_business_hub/screens/products/product_add.dart';
+import 'package:flexi_business_hub/screens/products/product_detail.dart';
+import 'package:flexi_business_hub/screens/products/product_update.dart';
+import 'package:flexi_business_hub/screens/register/register_screen.dart';
+import 'package:flexi_business_hub/screens/welcome/welcome_screen.dart';
 
 class AppRouter {
   //Router Map Key
@@ -29,6 +32,8 @@ class AppRouter {
   static const String productScreen = 'productScreen';
   static const String billAdd = 'billAdd';
   static const String billUpdate = 'billUpdate';
+  static const String memberScreen = 'memberScreen';
+  
   
   //Ronter Map
   static get routes => {
@@ -42,9 +47,10 @@ class AppRouter {
         contact: (context) => ContactScreen(),
         productAdd: (context) => ProductAdd(),
         productDetail: (context) => ProductDetail(),
-        productUpdate: (context) => ProductUpdate(),
+        productUpdate: (context) => ProductUpdate(),      
         productScreen: (context) => ProductScreen(),
         billAdd: (context) => BillAdd(),     
         billUpdate: (context) => BillUpdate(),
+        memberScreen: (context) => MemberScreen(),
       };
 }
